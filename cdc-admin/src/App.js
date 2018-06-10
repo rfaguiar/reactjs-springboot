@@ -4,6 +4,12 @@ import './css/pure-min.css';
 import './css/side-menu.css';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {lista: [{nome: 'Fulano', email: 'fulano.silva@gmail.com', senha: '123456'}]};
+  }
+
   render() {
     return (
       <div id="layout">
@@ -58,10 +64,17 @@ class App extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Fulano</td>                
-                      <td>fulano.silva@caelum.com.br</td>                
-                    </tr>
+                    {
+                      this.state.lista.map(autor => {
+                        return (
+                          <tr>
+                            <td>{autor.nome}</td>                
+                            <td>{autor.email}</td>                
+                          </tr>
+                        );
+                      })
+                    }
+                    
                   </tbody>
                 </table> 
               </div>             
