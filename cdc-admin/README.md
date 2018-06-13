@@ -5,7 +5,7 @@
 
 #docker desenvolvimento:
 * docker build --target desenv --tag cdc-admin-dev .  
-* docker run -p 3000:3000 --link cdc-api:cdc-api --name cdc-admin-dev -v ~/caelum/repeteco/react/cdc-admin:/app -d cdc-admin-dev
+* docker run -p 3000:3000 --link cdc-api:localhost --name cdc-admin-dev -v ~/caelum/repeteco/react/cdc-admin:/app -d cdc-admin-dev
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
