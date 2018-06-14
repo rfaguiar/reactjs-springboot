@@ -13,31 +13,14 @@ class App extends Component {
 
   componentDidMount() {
     $.ajax({
-      url:'http://localhost:8080/api/autores',
+      url:'http://localhost:8000/api/autores',
       dataType: 'json',
       success: function(resp) {
+        console.log(resp);
         this.setState({lista: resp})
-      }.bind(this)
-    })
-  }
-
-  enviaForm(evento) {
-    evento.preventDefault();
-    console.log("dados enviados");
-    console.log(evento);
-
-    $.ajax({
-      url:"http://localhost:8080/api/autores",
-      contentYype: "application/json",
-      dataType: "json",
-      type: "post",
-      data: JSON.stringify({nome: "", email: "", senha: ""}),
-      success: function(resposta) {
-        console.log("enviado com sucesso");
-      },
-      error: function(resposta) {
-        console.log("erro");
-        console.log(resposta);
+      }.bind(this),
+      error: function(resp) {
+        console.log(resp);
       }
     })
   }
@@ -67,14 +50,14 @@ class App extends Component {
             </div>
             <div className="content" id="content">
               <div className="pure-form pure-form-aligned">
-                <form className="pure-form pure-form-aligned" onSubmit={this.enviaForm} method="post">
+                <form className="pure-form pure-form-aligned">
                   <div className="pure-control-group">
                     <label htmlFor="nome">Nome</label> 
-                    <input id="nome" type="text" name="nome" />                  
+                    <input id="nome" type="text" name="nome" value=""  />                  
                   </div>
                   <div className="pure-control-group">
                     <label htmlFor="email">Email</label> 
-                    <input id="email" type="email" name="email" />                  
+                    <input id="email" type="email" name="email" value=""  />                  
                   </div>
                   <div className="pure-control-group">
                     <label htmlFor="senha">Senha</label> 
