@@ -13,16 +13,29 @@ class App extends Component {
 
   componentDidMount() {
     $.ajax({
-      url:'http://localhost:8000/api/autores',
+      url:'http://localhost:8080/api/autores',
       dataType: 'json',
       success: function(resp) {
-        console.log(resp);
         this.setState({lista: resp})
-      }.bind(this),
-      error: function(resp) {
-        console.log(resp);
-      }
+      }.bind(this)
     })
+  }
+
+  enviaForm(evento) {
+    evento.preventDefault();    
+   $.ajax({
+    url:"http//localhost:8080/api/autores",
+    contentType: 'application/json',
+    dataType:'json',
+    type:'post',
+    data: JSON.stringify({nome:'',email:'',senha:''}),
+    success: function(resposta){
+      console.log("enviado com sucesso");
+    },
+    error: function(resposta){
+        console.log("erro", resposta);
+    }    
+   });
   }
 
   render() {
@@ -50,14 +63,14 @@ class App extends Component {
             </div>
             <div className="content" id="content">
               <div className="pure-form pure-form-aligned">
-                <form className="pure-form pure-form-aligned">
+                <form className="pure-form pure-form-aligned" onSubmit={this.enviaForm} method="post">
                   <div className="pure-control-group">
                     <label htmlFor="nome">Nome</label> 
-                    <input id="nome" type="text" name="nome" value=""  />                  
+                    <input id="nome" type="text" name="nome" />                  
                   </div>
                   <div className="pure-control-group">
                     <label htmlFor="email">Email</label> 
-                    <input id="email" type="email" name="email" value=""  />                  
+                    <input id="email" type="email" name="email" />                  
                   </div>
                   <div className="pure-control-group">
                     <label htmlFor="senha">Senha</label> 
